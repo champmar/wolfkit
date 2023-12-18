@@ -6,7 +6,7 @@ import Generator from './generator.js'
 
 const pool = []
 
-program.version('Version is not defined!', '-v, --version');
+program.version('1.1.0', '-v, --version');
 
 program
   .command('init')
