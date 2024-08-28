@@ -47,7 +47,12 @@ export default {
 
             const allow = checkDatabase && checkModels && checkRoutes
             const fileExist = await fs.exists(diagram)
-            
+
+            if (!fileExist) {
+                createSpinner('wolfkit/diagram.txt file not found. Please run `wolfkit init` first.').error()
+                return
+            }
+
             if (fileExist && allow) {
                 fs.readFile(diagram, 'utf8', (err, data) => {
                     if (err) {
@@ -126,7 +131,6 @@ export default {
                 createSpinner(`Generated ${relationships.length} model files.`).success()
             }
 
-            createSpinner('wolfkit/diagram.txt file not found. Please run `wolfkit init` first.').error()
             return;
         },
         pull: async ({ use_file }) => {
